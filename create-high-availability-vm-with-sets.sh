@@ -8,7 +8,7 @@ date
 echo '------------------------------------------'
 echo 'Creating a Virtual Network for the VMs'
 az network vnet create \
-    --resource-group load \
+    --resource-group BT \
     --name bePortalVnet \
     --subnet-name bePortalSubnet 
 
@@ -16,14 +16,14 @@ az network vnet create \
 echo '------------------------------------------'
 echo 'Creating a Network Security Group'
 az network nsg create \
-    --resource-group load \
+    --resource-group BT \
     --name bePortalNSG 
 
 # Add inbound rule on port 80
 echo '------------------------------------------'
 echo 'Allowing access on port 80'
 az network nsg rule create \
-    --resource-group load \
+    --resource-group BT \
     --nsg-name bePortalNSG \
     --name Allow-80-Inbound \
     --priority 110 \
@@ -41,7 +41,7 @@ for i in `seq 1 3`; do
   echo '------------------------------------------'
   echo 'Creating webNic'$i
   az network nic create \
-    --resource-group load \
+    --resource-group BT \
     --name webNic$i \
     --vnet-name bePortalVnet \
     --subnet bePortalSubnet \
@@ -51,7 +51,7 @@ done
 # Create an availability set
 echo '------------------------------------------'
 echo 'Creating an availability set'
-az vm availability-set create -n portalAvailabilitySet -g load
+az vm availability-set create -n portalAvailabilitySet -g BT
 
 # Create 2 VM's from a template
 for i in `seq 1 3`; do
@@ -59,7 +59,7 @@ for i in `seq 1 3`; do
     echo 'Creating webVM'$i
     az vm create \
         --admin-username azureuser \
-        --resource-group load \
+        --resource-group BT \
         --name webVM$i \
         --nics webNic$i \
         --image UbuntuLTS \
