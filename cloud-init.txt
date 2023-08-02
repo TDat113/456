@@ -4,4 +4,4 @@ packages:
   - nginx
 runcmd:
   - service nginx restart
-  - [ 'sh', '-c', 'echo "<head><title>Patient Portal Web: "`hostname`"</title></head><body><h1>Patient Portal</h1><p>Welcome to Dat-871-Web-<strong>"`hostname`"</strong></p></body>" > /var/www/html/index.nginx-debian.html']
+  - [ 'sh', '-c', 'echo "<head><title>Welcome "`hostname`"</title></head><body><h1>Patient Portal</h1><p>Welcome to Dat-871 -  <strong>"`hostname`"</strong></p></body>" > /var/www/html/index.nginx-debian.html']
